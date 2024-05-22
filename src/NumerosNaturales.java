@@ -29,4 +29,14 @@ public class NumerosNaturales {
             }
         }
     }
+
+    public void guardarLista() {
+        try (PrintWriter writer = new PrintWriter(new File(FICHERO))) {
+            for (int num : listaNum) {
+                writer.println(num);
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Error al guardar la lista en el fichero");
+        }
+    }
 }
