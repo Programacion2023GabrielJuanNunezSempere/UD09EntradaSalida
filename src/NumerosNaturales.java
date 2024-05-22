@@ -39,4 +39,8 @@ public class NumerosNaturales {
             System.err.println("Error al guardar la lista en el fichero");
         }
     }
+
+    public void mostrarList() {
+        listaNum.stream().forEach(System.out::println);
+    }
 }
