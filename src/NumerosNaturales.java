@@ -11,6 +11,16 @@ public class NumerosNaturales {
 
     public NumerosNaturales() {
         listaNum = new ArrayList<>();
+        File file = new File(FICHERO);
+        if (file.exists()) {
+            try (Scanner scanner = new Scanner(file)) {
+                while (scanner.hasNextInt()) {
+                    listaNum.add(scanner.nextInt());
+                }
+            } catch (FileNotFoundException e) {
+                System.err.println("Error al leer el fichero");
+            }
+        }
     }
 
     public void leerNumerosUsuario() {
@@ -42,5 +52,19 @@ public class NumerosNaturales {
 
     public void mostrarList() {
         listaNum.stream().forEach(System.out::println);
+    }
+
+    public double media() {
+        return listaNum.stream()
+                .mapToInt(Integer::intValue)
+                .average()
+                .orElse(0.0);
+    }
+
+    public int max() {
+        return listaNum.stream()
+                .mapToInt(Integer::intValue)
+                .max()
+                .orElse(Integer.MIN_VALUE);
     }
 }
